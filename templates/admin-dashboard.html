@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+  </head>
+  <body>
+    Dashboard
+
+    <h1>Users</h1>
+    <h2 class="text-center mb-4">User List</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>File</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for user in users %}
+        <tr>
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td><a href="{{ user.file }}" download>Download File</a></td>
+          <td>
+            <button onclick="sendMessage('{{ user.email }}')" name="message">
+              Send message
+            </button>
+          </td>
+          <td>
+            <form action="/showdata" method="POST">
+              <input type="hidden" name="email" value="{{ user.email }}" />
+              <input type="hidden" name="type" value="{{ user.type }}" />
+              <button type="submit" name="showdata">Show Data</button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <a href="/logout">Logout</a>
+    <script>
+      function sendMessage(email) {
+        console.log(email);
+        console.log("clicked");
+        fetch("/send-message", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            message: "Insurance claimed",
+            email: email,
+          }),
+        });
+      }
+      /*
+      "
+      function showData(email) {
+        fetch("/showdata", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: email,
+          }),
+        })
+          .then(function (response) {
+            if (response.ok) {
+              return response.json();
+            } else {
+              throw new Error("Network response was not ok.");
+            }
+          })
+          .then(function (data) {
+            console.log(data);
+            // handle the response data here
+          })
+          .catch(function (error) {
+            console.error(
+              "There was a problem with the fetch operation:",
+              error
+            );
+          });
+      } */
+    </script>
+  </body>
+</html>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>realtime_data</title>
+  </head>
+  <body>
+    <!-- {% for l in t %} {{l}} {% endfor %} -->
+    hello {{users.name}}
+
+    <p>Messages :-</p>
+    {% if message %} {{ message.message }} {% endif %}
+    <button
+      onclick="showrealtime_data('{{ users.email }}')"
+      name="showrealtime_data"
+    >
+      Show realtime_data
+    </button>
+    <div id="realtime_data-container">
+      <div id="field1-container"></div>
+      <div id="field2-container"></div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      function showrealtime_data(email) {
+        console.log(email);
+        console.log("clicked");
+        fetch("/send-data", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: email,
+          }),
+        })
+          .then((response) => response.json())
+          .then((realtime_data) => {
+            console.log(realtime_data);
+            // Update the content of the page with the fetched realtime_data
+            $("#field1-container").html(JSON.stringify(realtime_data.left));
+            $("#field2-container").html(JSON.stringify(realtime_data.right));
+            localStorage.setItem(
+              "fetchedrealtime_data",
+              JSON.stringify(realtime_data)
+            );
+          })
+          .catch((error) => console.error(error));
+      }
+      $(document).ready(function () {
+        // Check if there is any fetched realtime_data stored in local storage
+        const fetchedrealtime_data = JSON.parse(
+          localStorage.getItem("fetchedrealtime_data")
+        );
+        if (fetchedrealtime_data) {
+          // If there is, display it on the page
+          $("#field1-container").html(
+            JSON.stringify(fetchedrealtime_data.left)
+          );
+          $("#field2-container").html(
+            JSON.stringify(fetchedrealtime_data.right)
+          );
+        }
+      });
+    </script>
+    <a href="/logout-user">logout</a>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </body>
+</html>
