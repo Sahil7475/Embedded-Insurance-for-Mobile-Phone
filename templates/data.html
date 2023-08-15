@@ -4,24 +4,166 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>realtime_data</title>
+    <title>User Dashboard</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+      charset="utf-8"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/easy-pie-chart/2.1.6/jquery.easypiechart.min.js"
+      charset="utf-8"
+    ></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='userdashboard.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
   </head>
-  <body>
-    <!-- {% for l in t %} {{l}} {% endfor %} -->
-    hello {{users.name}}
+  <body style="background-color: #26283a">
+    <div class="container-fluid">
+      <div class="row content">
+        <div class="col-sm-3 sidenav">
+          <p class="logo" style="font-weight: bold;font-size: 27px;"><span class="c">C<span class="o">O<span class="v">V<span class="e">E<span class="r">R<span class="w">W<span class="e">E<span class="l">L<span class="L">L</span></p>
+          <a href="#" class="icon-a"><i class="fa fa-dashboard icons"></i> &nbsp;&nbsp;Dashboard</a>
+          <a href="/logout-user" class="icon-a"><i class="fa fa-sign-out icons"></i> &nbsp;&nbsp;logout</a>          <!-- <a href="#" class="icon-a"
+            ><i class="fa fa-dashboard icons"></i> &nbsp;&nbsp;Dashboard</a
+          >
+          <a href="/logout-user" class="icon-a"
+            ><i class="fa fa-sign-out icons"></i> &nbsp;&nbsp;logout</a
+          > -->
+        </div>
+        <br />
 
-    <p>Messages :-</p>
-    {% if message %} {{ message.message }} {% endif %}
-    <button
-      onclick="showrealtime_data('{{ users.email }}')"
-      name="showrealtime_data"
-    >
-      Show realtime_data
-    </button>
-    <div id="realtime_data-container">
-      <div id="field1-container"></div>
-      <div id="field2-container"></div>
+        <div class="col-sm-9" style="width: 78%; margin-left: 21%">
+          <div class="well">
+            <h3>Heyyy</h3>
+            <p>{{users.name}}</p>
+            <p>Welcome to CoverWell,</p>
+            <p>
+              See real-time updates on the status of your claims, including
+              approval and personal details.
+            </p>
+            <p>See real-time Mobile device broken Percentage data</p>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="well">
+                <p>Overall Damage</p>
+                <div class="circular-progress3">
+                  <div class="value-container3">0%</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="well">
+                <p>Top side Damage</p>
+                <div class="circular-progress1">
+                  <div class="value-container1">
+                    <div id="field1-container"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="well">
+                <p>Bottom side Damage</p>
+                <div class="circular-progress2">
+                  <div class="value-container2">
+                    <div id="field2-container"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-sm-3">
+              <div class="well">
+                <p>Back Side Damage</p>
+                <div class="circular-progress4">
+                  <div class="value-container4">0%</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-4">
+              <div class="well">
+                <h4>User Information :</h4>
+                <p>Phone number : {{users.phoneno}}</p>
+                <p>Email id : {{users.email}}</p>
+                <p>Policy number : {{users.policynumber}}</p>
+                <p>Insurance Company Name : {{users.company}}</p>
+                <p>Your Premium Amount : ₹ {{users.amount}}</p>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="well">
+                <h4>Address :</h4>
+                <p>{{users.address}}</p>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="well">
+                <p>Messages :-</p>
+                {% if message %}
+                <p>{{ message.message }}</p>
+                <p>Estimated Insurance claim :</p>
+                <p class="cost"></p>
+                {% endif %}
+              </div>
+            </div>
+          </div>
+          <!-- <div class="row">
+            <div class="col-sm-8">
+              <div class="well">
+                <p>Text</p>
+              </div>
+            </div>
+            <div class="col-sm-4">
+              <div class="well">
+                <p>Text</p>
+              </div>
+            </div>
+          </div> -->
+        </div>
+      </div>
     </div>
+    <div class="footer">
+      <div class="row">
+          <p>Streamline your mobile device insurance experience with our embedded claims system. Say goodbye to complicated paperwork </p>
+          <p>and uncertainty. Get fast and efficient claims processing, reduced costs, and increased customer satisfaction. Protect your device today</p>
+      </div>
+
+      <div class="row">
+          <ul>
+              <li><a href="#">Contact us : 
+                  embeddedinsurance@gmail.com</a></li>
+              <li><a href="#">Phone no : 8104081285</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Terms & Conditions</a></li>
+              <li><a href="#">Career</a></li>
+          </ul>
+      </div>
+
+      <div class="row">
+          COVERWELL Copyright © 2023 CoverWell - All rights reserved || Designed By: COVERWELL TEAM
+      </div>
+  </div>
+  </footer>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
       function showrealtime_data(email) {
@@ -40,8 +182,10 @@
           .then((realtime_data) => {
             console.log(realtime_data);
             // Update the content of the page with the fetched realtime_data
-            $("#field1-container").html(JSON.stringify(realtime_data.left));
-            $("#field2-container").html(JSON.stringify(realtime_data.right));
+            $("#field1-container").html(JSON.stringify(realtime_data.Leftside));
+            $("#field2-container").html(
+              JSON.stringify(realtime_data.Rightside)
+            );
             localStorage.setItem(
               "fetchedrealtime_data",
               JSON.stringify(realtime_data)
@@ -57,15 +201,150 @@
         if (fetchedrealtime_data) {
           // If there is, display it on the page
           $("#field1-container").html(
-            JSON.stringify(fetchedrealtime_data.left)
+            JSON.stringify(fetchedrealtime_data.Leftside)
           );
           $("#field2-container").html(
-            JSON.stringify(fetchedrealtime_data.right)
+            JSON.stringify(fetchedrealtime_data.Rightside)
           );
         }
       });
+      /* for 1st circle  */
+      let progressBar1 = document.querySelector(".circular-progress1");
+      let valueContainer1 = document.querySelector(".value-container1");
+
+      let progressValue1 = 0;
+      let value1 = "{{realtime_data.Topleftcorner}}";
+      let value4 = "{{realtime_data.Toprightcorner}}";
+      let totalval1 = parseInt(value1) + parseInt(value4);
+      console.log(totalval1);
+      /*  localStorage.setItem("progressValue", totalval1);
+      let progressValue = localStorage.getItem("progressValue");
+      let intval1 = parseInt(progressValue);
+      let progressEndValue1; */
+      let val1 = parseInt((parseInt(totalval1) / 2048) * 100);
+      progressEndValue1 = val1;
+      console.log(progressEndValue1);
+      let speed1 = 50;
+
+      if (totalval1 > 11) {
+        let progress1 = setInterval(() => {
+          progressValue1++;
+          valueContainer1.textContent = `${progressValue1}%`;
+          progressBar1.style.background = `conic-gradient(
+            #7267e9 ${progressValue1 * 3.6}deg,
+            #cadcff ${progressValue1 * 3.6}deg
+        )`;
+          if (progressValue1 == progressEndValue1) {
+            clearInterval(progress1);
+          }
+        }, speed1);
+      } else {
+        valueContainer1.textContent = "0%";
+      }
+
+      /* for 2nd circle  */
+      let progressBar2 = document.querySelector(".circular-progress2");
+      let valueContainer2 = document.querySelector(".value-container2");
+      let value2 = "{{realtime_data.Bottomleftcorner}}";
+      let value5 = "{{realtime_data.Bottomrightcorner}}";
+      let totalval2 = parseInt(value2) + parseInt(value5);
+      console.log(totalval2);
+      let val2 = parseInt((parseInt(totalval2) / 2048) * 100);
+
+      let progressValue2 = 0;
+      let progressEndValue2 = val2;
+      console.log(progressEndValue2);
+      let speed2 = 50;
+
+      if (totalval2 > 11) {
+        let progress2 = setInterval(() => {
+          progressValue2++;
+          valueContainer2.textContent = `${progressValue2}%`;
+          progressBar2.style.background = `conic-gradient(
+            #7267e9 ${progressValue2 * 3.6}deg,
+           #cadcff ${progressValue2 * 3.6}deg
+             )`;
+          if (progressValue2 == progressEndValue2) {
+            clearInterval(progress2);
+          }
+        }, speed2);
+      } else {
+        valueContainer2.textContent = "0%";
+      }
+
+      /* for 3rd circle  */
+
+      /* for 4th circle  */
+
+      let progressBar4 = document.querySelector(".circular-progress4");
+      let valueContainer4 = document.querySelector(".value-container4");
+      let value6 = "{{realtime_data.Backside}}";
+      let progressValue4 = 0;
+      let val6 = parseInt((value6 / 1024) * 100);
+      let progressEndValue4 = val6;
+      console.log(progressEndValue4);
+      let speed4 = 50;
+      if (value6 > 11) {
+        let progress4 = setInterval(() => {
+          progressValue4++;
+          valueContainer4.textContent = `${progressValue4}%`;
+          progressBar4.style.background = `conic-gradient(
+                #7267e9 ${progressValue4 * 3.6}deg,
+           #cadcff ${progressValue4 * 3.6}deg
+             )`;
+          if (progressValue4 == progressEndValue4) {
+            clearInterval(progress4);
+          }
+        }, speed4);
+      } else {
+        valueContainer4.textContent = "0%";
+      }
+
+      let progressBar3 = document.querySelector(".circular-progress3");
+      let valueContainer3 = document.querySelector(".value-container3");
+      let finalvalue1 = parseInt(progressEndValue1);
+      let finalvalue2 = parseInt(progressEndValue2);
+      let finalvalue3 = parseInt(progressEndValue4);
+      let finalvalue = parseInt(finalvalue1 + finalvalue2 + finalvalue3);
+      let finalval = parseInt(finalvalue / 3);
+
+      let progressValue3 = 0;
+      let progressEndValue3 = finalval;
+      let speed3 = 50;
+      if (totalval1 > 11 || totalval2 > 11 || value6 > 11) {
+        let progress3 = setInterval(() => {
+          progressValue3++;
+          valueContainer3.textContent = `${progressValue3}%`;
+          progressBar3.style.background = `conic-gradient(
+            #ed7c30 ${progressValue3 * 3.6}deg,
+            #cadcff ${progressValue3 * 3.6}deg
+             )`;
+          if (progressValue3 == progressEndValue3) {
+            clearInterval(progress3);
+          }
+        }, speed3);
+      } else {
+        valueContainer3.textContent = "0%";
+      }
+      let cost = document.querySelector(".cost");
+      let insuredamount = "{{users.amount}}" * 14.5;
+      if (finalval >= 20 && finalval < 40) {
+        let finalcost = insuredamount * 0.2;
+        cost.textContent = "Rs" + " " + finalcost;
+      } else if (finalval >= 40 && finalval < 60) {
+        let finalcost = insuredamount * 0.4;
+        cost.textContent = "Rs" + " " + finalcost;
+      } else if (finalval >= 60 && finalval < 90) {
+        let finalcost = insuredamount * 0.63;
+        cost.textContent = "Rs" + " " + finalcost;
+      } else if (finalval >= 90 && finalval <= 100) {
+        let finalcost = insuredamount * 0.85;
+        cost.textContent = "Rs" + " " + finalcost;
+      }
     </script>
-    <a href="/logout-user">logout</a>
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+
   </body>
 </html>

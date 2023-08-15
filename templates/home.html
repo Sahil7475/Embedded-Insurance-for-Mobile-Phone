@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home page</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='home.css') }}"
+    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+</head>
+
+<body style="background-color: #26283a" ;>
+    <div style="background-color: #303247;" class="navbar">
+        <a href="/" class="logo" style="font-weight: bold;"><span class="c">C<span class="o">O<span class="v">V<span class="e">E<span class="r">R<span class="w">W<span class="e">E<span class="l">L<span class="L">L</span></a>
+        <!-- <a href="#news">News</a> -->
+        <div class="dropdown">
+            <button class="dropbtn">Login 
+            <i class="fa fa-caret-down"></i>
+          </button>
+            <div class="dropdown-content">
+                <a href="/login">User</a>
+                <a href="/admin-login" class="comp ">Company</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <button class="dropbtn"> Signup
+            <i class="fa fa-caret-down"></i>
+          </button>
+            <div class="dropdown-content ab">
+                <a href="/sign-up">User</a>
+                <a href="/admin-signup">Company</a>
+            </div>
+        </div>
+    </div>
+    </div>
+   
+        <div class="">
+            <img src="{{ url_for('static', filename='images/landing.gif') }}" alt="" height="700px" width="700px" style="margin-top: -50px; margin-left:40px">
+        </div>
+        <div class="landing-page">
+            <p style="color: antiquewhite;
+            font-size: 50px;
+            margin-top: -20px;
+        "><br>What if Mobile <span style="color:#f15a4f">Insurance</span>  Claim was Easy? </p>
+            <p style="    line-height: 1.5;
+            color: antiquewhite;
+            font-size: 30px;
+            margin-top: -65px;"><br>Welcome to Most <span style="color:#e78c2d">efficient</span> insurance <br>claiming platform</p>
+            <p style="color: antiquewhite;
+            margin-top: -20px;
+            line-height: 1.5; font-size: 20px;">Say goodbye to <span style="color:#fcbf2d">traditional</span>  insurance claims processes <br>- Say hello to <span class="c">C<span class="o">O<span class="v">V<span class="e">E<span class="r">R<span class="w">W<span class="e">E<span class="l">L<span class="L">L</span></p>
+            <a href="/sign-up"><button class="bck-btn" style="cursor: pointer
+            ; font-weight: bold;"><i class="fa fa-sign-in" aria-hidden="true"></i>  &nbsp Sign Up Now</button></a>
+            <!-- <p style="color: antiquewhite; font-size: 30px;">Say goodbye to traditional insurance claims processes </p> -->
+            <!-- <h3 style="color: antiquewhite;">Say hello to COVERWELL</h3> -->
+    
+        </div>
+
+        <div class="footer">
+            <div class="row">
+                <p>Streamline your mobile device insurance experience with our embedded claims system. Say goodbye to complicated paperwork </p>
+                <p>and uncertainty. Get fast and efficient claims processing, reduced costs, and increased customer satisfaction. Protect your device today</p>
+            </div>
+    
+            <div class="row">
+                <ul>
+                    <li><a href="#">Contact us : 
+                        embeddedinsurance@gmail.com</a></li>
+                    <li><a href="#">Phone no : 8104081285</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                    <li><a href="#">Career</a></li>
+                </ul>
+            </div>
+    
+            <div class="row">
+                COVERWELL Copyright © 2023 CoverWell - All rights reserved || Designed By: COVERWELL TEAM
+            </div>
+        </div>
+        </footer>
+    
+    
+
+</body>

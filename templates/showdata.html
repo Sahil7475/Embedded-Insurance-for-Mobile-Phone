@@ -4,11 +4,338 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Show data</title>
+    <title>User Data</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+    />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"
+      charset="utf-8"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/easy-pie-chart/2.1.6/jquery.easypiechart.min.js"
+      charset="utf-8"
+    ></script>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='showdata.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
-  <body>
-    hi
-    <p>{{ data.left }}</p>
-    <p>{{ data.right }}</p>
+  <body style="background-color: #26283a">
+    <div class="container-fluid">
+      <div class="row content">
+        <br />
+        <div class="col-sm-9" style="width: 100%">
+          <div class="well1">
+            <button class="bck-btn" href="/admin-dashboard">Back</button>
+            <div class="well2">
+              <p class="cost"></p>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-3">
+              <div class="well">
+                <p>Overall Damage</p>
+                <div class="circular-progress3">
+                  <div class="value-container3">0%</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="well">
+                <p>Top Left Damage</p>
+                <div class="circular-progress1">
+                  <div class="value-container1">0%</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="well">
+                <p>Top Right Damage</p>
+                <div class="circular-progress2">
+                  <div class="value-container2">0%</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row one">
+            <div class="col-sm-3">
+              <div class="well">
+                <p>Backside Damage</p>
+                <div class="circular-progress4">
+                  <div class="value-container4">0%</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="well">
+                <p>Bottom Left Damage</p>
+                <div class="circular-progress5">
+                  <div class="value-container5">0%</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-3">
+              <div class="well">
+                <p>Bottom Right Damage</p>
+
+                <div class="circular-progress6">
+                  <div class="value-container6">0%</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- <div class="row">
+        <div class="col-sm-8">
+          <div class="well">
+            <p>Text</p>
+          </div>
+        </div>
+        <div class="col-sm-4">
+          <div class="well">
+            <p>Text</p>
+          </div>
+        </div>
+      </div> -->
+    </div>
+    <div class="footer">
+      <div class="row">
+          <p>Streamline your mobile device insurance experience with our embedded claims system. Say goodbye to complicated paperwork </p>
+          <p>and uncertainty. Get fast and efficient claims processing, reduced costs, and increased customer satisfaction. Protect your device today</p>
+      </div>
+
+      <div class="row">
+          <ul>
+              <li><a href="#">Contact us : 
+                  embeddedinsurance@gmail.com</a></li>
+              <li><a href="#">Phone no : 8104081285</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Terms & Conditions</a></li>
+              <li><a href="#">Career</a></li>
+          </ul>
+      </div>
+
+      <div class="row">
+          COVERWELL Copyright © 2023 CoverWell - All rights reserved || Designed By: COVERWELL TEAM
+      </div>
+  </div>
+  </footer>
+    <script>
+      $(document).ready(function () {
+        $(".bck-btn").click(function (e) {
+          e.preventDefault();
+          window.location.href = $(this).attr("href");
+        });
+      });
+      /* for 1st circle  */
+      let progressBar1 = document.querySelector(".circular-progress1");
+      let valueContainer1 = document.querySelector(".value-container1");
+
+      let progressValue1 = 0;
+      let value1 = "{{data.Topleftcorner}}";
+      console.log(value1);
+      localStorage.setItem("progressValue", value1);
+      let progressValue = localStorage.getItem("progressValue");
+      let intval1 = parseInt(progressValue);
+      let progressEndValue1;
+      let val1 = parseInt((intval1 / 1024) * 100);
+      progressEndValue1 = val1;
+      console.log(progressEndValue1);
+      let speed1 = 50;
+
+      if (intval1 > 11) {
+        let progress1 = setInterval(() => {
+          progressValue1++;
+          valueContainer1.textContent = `${progressValue1}%`;
+          progressBar1.style.background = `conic-gradient(
+            #7267e9 ${progressValue1 * 3.6}deg,
+            #cadcff ${progressValue1 * 3.6}deg
+        )`;
+          if (progressValue1 == progressEndValue1) {
+            clearInterval(progress1);
+          }
+        }, speed1);
+      } else {
+        valueContainer1.textContent = "0%";
+      }
+      /* for 2nd circle  */
+
+      let progressBar2 = document.querySelector(".circular-progress2");
+      let valueContainer2 = document.querySelector(".value-container2");
+      let value2 = "{{data.Toprightcorner}}";
+      console.log(value2);
+      let val2 = parseInt((value2 / 1024) * 100);
+
+      let progressValue2 = 0;
+      let progressEndValue2 = val2;
+      console.log(progressEndValue2);
+      let speed2 = 50;
+
+      if (value2 > 11) {
+        let progress2 = setInterval(() => {
+          progressValue2++;
+          valueContainer2.textContent = `${progressValue2}%`;
+          progressBar2.style.background = `conic-gradient(
+            #7267e9 ${progressValue2 * 3.6}deg,
+           #cadcff ${progressValue2 * 3.6}deg
+             )`;
+          if (progressValue2 == progressEndValue2) {
+            clearInterval(progress2);
+          }
+        }, speed2);
+      } else {
+        valueContainer2.textContent = "0%";
+      }
+
+      /* for 3rd circle  */
+
+      /* for 4th circle  */
+
+      let progressBar4 = document.querySelector(".circular-progress4 ");
+      let valueContainer4 = document.querySelector(".value-container4 ");
+      let value4 = "{{data.Backside}}";
+      console.log(value4);
+      let val4 = parseInt((value4 / 1024) * 100);
+      let progressValue4 = 0;
+      let progressEndValue4 = val4;
+      console.log(progressEndValue4);
+      let speed4 = 50;
+      if (value4 > 11) {
+        let progress4 = setInterval(() => {
+          progressValue4++;
+          valueContainer4.textContent = `${progressValue4}%`;
+          progressBar4.style.background = `conic-gradient(
+              #7267e9 ${progressValue4 * 3.6}deg,
+         #cadcff ${progressValue4 * 3.6}deg
+           )`;
+          if (progressValue4 == progressEndValue4) {
+            clearInterval(progress4);
+          }
+        }, speed4);
+      } else {
+        valueContainer4.textContent = "0%";
+      }
+
+      /* for 5th circle  */
+
+      let progressBar5 = document.querySelector(".circular-progress5 ");
+      let valueContainer5 = document.querySelector(".value-container5 ");
+      let value5 = "{{data.Bottomleftcorner}}";
+      console.log(value5);
+      let val5 = parseInt((value5 / 1024) * 100);
+      let progressValue5 = 0;
+      let progressEndValue5 = val5;
+      console.log(progressEndValue5);
+      let speed5 = 50;
+      if (value5 > 11) {
+        let progress5 = setInterval(() => {
+          progressValue5++;
+          valueContainer5.textContent = `${progressValue5}%`;
+          progressBar5.style.background = `conic-gradient(
+              #7267e9 ${progressValue5 * 3.6}deg,
+         #cadcff ${progressValue5 * 3.6}deg
+           )`;
+          if (progressValue5 == progressEndValue5) {
+            clearInterval(progress5);
+          }
+        }, speed5);
+      } else {
+        valueContainer5.textContent = "0%";
+      }
+
+      /* for 6th circle  */
+
+      let progressBar6 = document.querySelector(".circular-progress6 ");
+      let valueContainer6 = document.querySelector(".value-container6 ");
+      let value6 = "{{data.Bottomrightcorner}}";
+      console.log(value6);
+      let val6 = parseInt((value6 / 1024) * 100);
+      let progressValue6 = 0;
+      let progressEndValue6 = val6;
+      console.log(progressEndValue6);
+      let speed6 = 50;
+      if (value6 > 11) {
+        let progress6 = setInterval(() => {
+          progressValue6++;
+          valueContainer6.textContent = `${progressValue6}%`;
+          progressBar6.style.background = `conic-gradient(
+              #7267e9 ${progressValue6 * 3.6}deg,
+         #cadcff ${progressValue6 * 3.6}deg
+           )`;
+          if (progressValue6 == progressEndValue6) {
+            clearInterval(progress6);
+          }
+        }, speed6);
+      } else {
+        valueContainer6.textContent = "0%";
+      }
+      let progressBar3 = document.querySelector(".circular-progress3");
+      let valueContainer3 = document.querySelector(".value-container3");
+      let finalvalue1 = parseInt(progressEndValue1);
+      let finalvalue2 = parseInt(progressEndValue2);
+      let finalvalue4 = parseInt(progressEndValue4);
+      let finalvalue5 = parseInt(progressEndValue5);
+      let finalvalue6 = parseInt(progressEndValue6);
+      let finalvalue = parseInt(
+        finalvalue1 + finalvalue2 + finalvalue4 + finalvalue5 + finalvalue6
+      );
+      let finalval = parseInt(finalvalue / 5);
+
+      let progressValue3 = 0;
+      let progressEndValue3 = finalval;
+      let speed3 = 50;
+      if (
+        value1 > 11 ||
+        value2 > 11 ||
+        value4 > 11 ||
+        value5 > 11 ||
+        value6 > 11
+      ) {
+        let progress3 = setInterval(() => {
+          progressValue3++;
+          valueContainer3.textContent = `${progressValue3}%`;
+          progressBar3.style.background = `conic-gradient(
+            #ed7c30 ${progressValue3 * 3.6}deg,
+            #cadcff ${progressValue3 * 3.6}deg
+             )`;
+          if (progressValue3 == progressEndValue3) {
+            clearInterval(progress3);
+          }
+        }, speed3);
+      } else {
+        valueContainer3.textContent = "0%";
+      }
+      let cost = document.querySelector(".cost");
+      let insuredamount = "{{user.amount}}" * 14.5;
+      if (finalval >= 20 && finalval < 40) {
+        let finalcost = insuredamount * 0.2;
+        cost.textContent = "Estimated Cost :- ₹" + " " + finalcost;
+      } else if (finalval >= 40 && finalval < 60) {
+        let finalcost = insuredamount * 0.4;
+        cost.textContent = "Estimated Cost :- ₹" + " " + finalcost;
+      } else if (finalval >= 60 && finalval < 90) {
+        let finalcost = insuredamount * 0.63;
+        cost.textContent = "Estimated Cost :- ₹" + " " + finalcost;
+      } else if (finalval >= 90 && finalval <= 100) {
+        let finalcost = insuredamount * 0.85;
+        cost.textContent = "Estimated Cost :- ₹" + " " + finalcost;
+      }
+    </script>
   </body>
 </html>

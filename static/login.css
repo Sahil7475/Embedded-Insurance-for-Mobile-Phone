@@ -1,0 +1,135 @@
+@import url("https://fonts.googleapis.com/css2?family=Alkatra&display=swap");
+@import url(https://fonts.googleapis.com/css?family=Roboto:300);
+header .header {
+  background-color: #fff;
+  height: 45px;
+}
+
+header a img {
+  width: 134px;
+  margin-top: 4px;
+}
+.alert {
+  padding: 5px;
+  background-color: #ffb3b3;
+  color: black;
+  font-weight: bold;
+  border-radius: 10px;
+  display: none;
+}
+
+.close-btn {
+  float: right;
+  margin-right: 10px;
+  font-weight: bold;
+  color: black;
+  cursor: pointer;
+}
+
+.well1 {
+  margin-top: 0px;
+  border-color: black;
+  width: 100%;
+}
+
+.bck-btn {
+  width: 100px;
+  height: 45px;
+  margin-top: 10px;
+  margin-left: 10px;
+  border-radius: 20px;
+  border: 1px solid #7267e9;
+  cursor: pointer;
+  background-color: transparent;
+  color: #d2eaf1;
+}
+
+.bck-btn:hover {
+  background-color: #7267e9;
+}
+.login-page {
+  width: 360px;
+  padding: 8% 0 0;
+  margin: auto;
+}
+
+.login-page .form .login {
+  margin-top: -31px;
+  margin-bottom: 26px;
+}
+
+.login-header {
+  color: white;
+}
+
+.form {
+  position: relative;
+  z-index: 1;
+  background-color: #303247;
+  max-width: 360px;
+  margin: 0 auto 100px;
+  padding: 45px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.form input {
+  font-family: "Alkatra", cursive;
+  outline: 0;
+  /* background: rgba(195, 255, 225, 255); */
+  background-color: #faebff;
+
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+  border-radius: 10px;
+}
+
+.form ::placeholder {
+  color: #26283a;
+}
+
+.form button {
+  font-family: "Alkatra", cursive;
+  text-transform: uppercase;
+  outline: 0;
+  /* background-color: #328f8a; */
+  background-color: #7267e9;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #ffffff;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
+.form .message {
+  margin: 15px 0 0;
+  color: #b3b3b3;
+  font-size: 12px;
+}
+
+.form .message a {
+  color: #4caf50;
+  text-decoration: none;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+body {
+  background-color: #26283a;
+  font-family: "Alkatra", cursive;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

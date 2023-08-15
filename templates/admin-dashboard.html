@@ -5,11 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Admin Dashboard</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{{ url_for('static', filename='admindashboard.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
   </head>
   <body>
-    Dashboard
-
-    <h1>Users</h1>
+    <!-- <h1>Users</h1>
     <h2 class="text-center mb-4">User List</h2>
     <table class="table table-striped">
       <thead>
@@ -42,7 +49,128 @@
         {% endfor %}
       </tbody>
     </table>
-    <a href="/logout">Logout</a>
+ -->
+    <div id="mySidenav" class="sidenav">
+      <p class="logo" style="font-weight: bold;font-size: 27px;"><span class="c">C<span class="o">O<span class="v">V<span class="e">E<span class="r">R<span class="w">W<span class="e">E<span class="l">L<span class="L">L</span></p>
+                
+      <a href="/admin-dashboard" class="icon-a"
+        ><i class="fa fa-dashboard icons"></i> &nbsp;&nbsp;Dashboard</a
+      >
+
+      <a href="/logout" class="icon-a"
+        ><i class="fa fa-sign-out icons"></i> &nbsp;&nbsp;logout</a
+      >
+    </div>
+    <div id="main">
+      <form action="/admin-dashboard" method="post"></form>
+      <div class="clearfix"></div>
+      <br /><br />
+      <div style="color: white;" class="top">
+        <div class="marg"><h2 >Heyyy</h2>
+          <p>{{admin.name}}</p>
+          Access valuable insights and analytics on your mobile device damage data, helping you to identify areas that are damaged and eligible for claiming, and allowing you to make data-driven decisions.</div>
+        
+    </div>
+      <div class="col-div-8">
+        <div class="box-8">
+          <div class="content-box">
+            <div class="ui">
+              <p>User Information</p>
+            </div>
+            <br />
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Email id</th>
+                  <th>Policy Number</th>
+                  <th class="th">Action</th>
+                  <th class="th">Show Data</th>
+                  <th>Damaged</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for user in users %}
+                <!-- <button type="submit" onclick="trigger('{{user.email}}')">
+                  Refresh
+                </button> -->
+                <tr>
+                  <td>{{ user.name }}</td>
+                  <td>{{ user.email }}</td>
+                  <td>{{user.policynumber}}</td>
+                  <td>
+                    <button
+                      onclick="sendMessage('{{ user.email }}')"
+                      name="message"
+                      class="btn"
+                    >
+                      Approve Claim
+                    </button>
+                  </td>
+                  <td>
+                    <form action="/showdata" method="POST">
+                      <input
+                        type="hidden"
+                        name="email"
+                        value="{{ user.email }}"
+                      />
+                      <input
+                        type="hidden"
+                        name="type"
+                        value="{{ user.type }}"
+                      />
+                      <button
+                        type="submit"
+                        name="showdata"
+                        class="btn"
+                        id="open"
+                      >
+                        Show Data
+                      </button>
+                    </form>
+                  </td>
+                  <td>
+                    {% if realtime_data['Backside'] or
+                    realtime_data['Bottomleftcorner'] or
+                    realtime_data['Bottomrightcorner'] or
+                    realtime_data['Topleftcorner'] or
+                    realtime_data['Toprightcorner'] > 11 %} {{yes}} {% else %}
+                    {{no}} {% endif %}
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+
+    <div class="footer">
+      <div class="row">
+          <p>Streamline your mobile device insurance experience with our embedded claims system. Say goodbye to complicated paperwork </p>
+          <p>and uncertainty. Get fast and efficient claims processing, reduced costs, and increased customer satisfaction. Protect your device today</p>
+      </div>
+
+      <div class="row">
+          <ul>
+              <li><a href="#">Contact us : 
+                  embeddedinsurance@gmail.com</a></li>
+              <li><a href="#">Phone no : 8104081285</a></li>
+              <li><a href="#">Privacy Policy</a></li>
+              <li><a href="#">Terms & Conditions</a></li>
+              <li><a href="#">Career</a></li>
+          </ul>
+      </div>
+
+      <div class="row">
+          COVERWELL Copyright © 2023 CoverWell - All rights reserved || Designed By: COVERWELL TEAM
+      </div>
+  </div>
+  </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script>
       function sendMessage(email) {
         console.log(email);
@@ -53,11 +181,61 @@
             "Content-Type": "application/json",
           },
           body: JSON.stringify({
-            message: "Insurance claimed",
+            message: "Claim is eligible",
             email: email,
           }),
         });
       }
+      $(".nav").click(function () {
+        $("#mySidenav").css("width", "70px");
+        $("#main").css("margin-left", "70px");
+        $(".logo").css("visibility", "hidden");
+        $(".logo span").css("visibility", "visible");
+        $(".logo span").css("margin-left", "-10px");
+        $(".icon-a").css("visibility", "hidden");
+        $(".icons").css("visibility", "visible");
+        $(".icons").css("margin-left", "-8px");
+        $(".nav").css("display", "none");
+        $(".nav2").css("display", "block");
+      });
+
+      $(".nav2").click(function () {
+        $("#mySidenav").css("width", "300px");
+        $("#main").css("margin-left", "300px");
+        $(".logo").css("visibility", "visible");
+        $(".icon-a").css("visibility", "visible");
+        $(".icons").css("visibility", "visible");
+        $(".nav").css("display", "block");
+        $(".nav2").css("display", "none");
+      });
+
+      /*   for modal button    */
+
+      // Get the modal
+      var modal = document.getElementById("modal");
+
+      // Get the button that opens the modal
+      var btn = document.getElementById("btn1");
+
+      // Get the <span> element that closes the modal
+      var span = document.getElementsByClassName("close")[0];
+
+      // When the user clicks the button, open the modal
+      btn.onclick = function () {
+        modal.style.display = "block";
+      };
+
+      // When the user clicks on <span> (x), close the modal
+      span.onclick = function () {
+        modal.style.display = "none";
+      };
+
+      // When the user clicks anywhere outside of the modal, close it
+      window.onclick = function (event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      };
       /*
       "
       function showData(email) {
@@ -89,5 +267,6 @@
           });
       } */
     </script>
+    
   </body>
 </html>
